@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekaiva Garments - Premium T-Shirts</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="showPage('home')">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Ekaiva Garments</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-link active" onclick="showPage('home')">Home</a>
+                <a href="#" class="nav-link" onclick="showPage('products')">Products</a>
+                <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
+                <a href="#" class="nav-link" onclick="showPage('admin')">
+                    <i class="fas fa-user"></i> Admin
+                </a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Premium T-Shirts for <span class="highlight">Every Style</span></h1>
+                    <p>Discover our collection of high-quality, comfortable t-shirts crafted with premium materials and attention to detail.</p>
+                    <button class="cta-button" onclick="showPage('products')">
+                        Shop Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Premium T-Shirts">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Ekaiva Garments?</h2>
+                <p class="section-subtitle">Experience the difference with our premium quality and service</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Premium Quality</h3>
+                        <p>100% premium cotton and finest materials for lasting comfort</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick and reliable shipping to your doorstep</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Quality Guarantee</h3>
+                        <p>100% satisfaction guarantee or your money back</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Always here to help with any questions or concerns</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section class="collections">
+            <div class="container">
+                <h2>Our Collections</h2>
+                <p class="section-subtitle">From casual to formal, find your perfect style</p>
+                
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <img src="https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Casual Collection">
+                        <div class="collection-overlay">
+                            <h3>Casual Collection</h3>
+                            <p>Everyday comfort meets style</p>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <img src="https://images.pexels.com/photos/5710082/pexels-photo-5710082.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Formal Collection">
+                        <div class="collection-overlay">
+                            <h3>Formal Collection</h3>
+                            <p>Professional elegance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-card">
+                        <img src="https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Graphic Collection">
+                        <div class="collection-overlay">
+                            <h3>Graphic Collection</h3>
+                            <p>Express your personality</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Upgrade Your Wardrobe?</h2>
+                <p>Join thousands of satisfied customers who trust Ekaiva Garments for quality and style.</p>
+                <button class="cta-button" onclick="showPage('products')">Start Shopping Today</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Products Page -->
+    <div id="products-page" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Our T-Shirt Collection</h1>
+                <p>Discover premium quality t-shirts for every occasion</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search products...">
+                </div>
+                
+                <div class="filter-box">
+                    <i class="fas fa-filter"></i>
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="casual">Casual</option>
+                        <option value="formal">Formal</option>
+                        <option value="sports">Sports</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Contact Us</h1>
+                <p>Get in touch with us for any inquiries</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info-section">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Chat with us instantly</p>
+                        <a href="https://wa.me/919876543210" class="contact-btn whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat Now
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>Call us directly</p>
+                        <a href="tel:+919876543210" class="contact-btn phone-btn">
+                            <i class="fas fa-phone"></i> +91 98765 43210
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>Send us an email</p>
+                        <a href="mailto:info@ekaivagarments.com" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Come to our store</p>
+                        <div class="address">
+                            123 Fashion Street<br>
+                            Mumbai, Maharashtra 400001<br>
+                            India
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="business-hours">
+                    <h2>Business Hours</h2>
+                    <div class="hours-grid">
+                        <div class="hours-item">
+                            <span class="day">Monday - Saturday</span>
+                            <span class="time">9:00 AM - 8:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span class="day">Sunday</span>
+                            <span class="time">10:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="admin-page" class="page">
+        <div class="container">
+            <div class="admin-header">
+                <div>
+                    <h1>Admin Panel</h1>
+                    <p>Manage your product catalog</p>
+                </div>
+                <button class="add-product-btn" onclick="toggleProductForm()">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p>Total Products</p>
+                            <h3 id="total-products">0</h3>
+                        </div>
+                        <i class="fas fa-box"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p>Avg. Price</p>
+                            <h3 id="avg-price">$0</h3>
+                        </div>
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p>Categories</p>
+                            <h3 id="total-categories">0</h3>
+                        </div>
+                        <i class="fas fa-tags"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div>
+                            <p>Colors</p>
+                            <h3 id="total-colors">0</h3>
+                        </div>
+                        <i class="fas fa-palette"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Product Form -->
+            <div class="product-form" id="product-form" style="display: none;">
+                <h2>Add New Product</h2>
+                <form id="add-product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Price ($)</label>
+                            <input type="number" id="product-price" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="url" id="product-image" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="product-category" required>
+                            <option value="casual">Casual</option>
+                            <option value="formal">Formal</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Available Sizes</label>
+                        <div class="checkbox-group" id="sizes-group">
+                            <label><input type="checkbox" value="XS"> XS</label>
+                            <label><input type="checkbox" value="S"> S</label>
+                            <label><input type="checkbox" value="M"> M</label>
+                            <label><input type="checkbox" value="L"> L</label>
+                            <label><input type="checkbox" value="XL"> XL</label>
+                            <label><input type="checkbox" value="XXL"> XXL</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Available Colors</label>
+                        <div class="checkbox-group" id="colors-group">
+                            <label><input type="checkbox" value="White"> White</label>
+                            <label><input type="checkbox" value="Black"> Black</label>
+                            <label><input type="checkbox" value="Navy"> Navy</label>
+                            <label><input type="checkbox" value="Grey"> Grey</label>
+                            <label><input type="checkbox" value="Red"> Red</label>
+                            <label><input type="checkbox" value="Blue"> Blue</label>
+                            <label><input type="checkbox" value="Green"> Green</label>
+                            <label><input type="checkbox" value="Yellow"> Yellow</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="product-description" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Add Product</button>
+                        <button type="button" class="cancel-btn" onclick="toggleProductForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Products Table -->
+            <div class="products-table">
+                <h2>Product Catalog</h2>
+                <div class="table-container">
+                    <table id="admin-products-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Sizes</th>
+                                <th>Colors</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-tbody">
+                            <!-- Products will be dynamically loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="empty-products" id="empty-products" style="display: none;">
+                    <i class="fas fa-box"></i>
+                    <p>No products added yet.</p>
+                    <p>Click "Add New Product" to get started.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Product Details</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="product-details">
+                    <div class="product-image">
+                        <img id="modal-product-image" src="" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h1 id="modal-product-name"></h1>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(4.8/5)</span>
+                        </div>
+                        <p class="price" id="modal-product-price"></p>
+                        <p class="description" id="modal-product-description"></p>
+                        
+                        <div class="size-selection">
+                            <h3>Select Size</h3>
+                            <div class="size-options" id="modal-size-options">
+                                <!-- Size options will be dynamically loaded -->
+                            </div>
+                        </div>
+                        
+                        <div class="color-selection">
+                            <h3>Select Color</h3>
+                            <div class="color-options" id="modal-color-options">
+                                <!-- Color options will be dynamically loaded -->
+                            </div>
+                        </div>
+                        
+                        <button class="add-to-cart-btn" id="modal-add-to-cart">
+                            <i class="fab fa-whatsapp"></i>
+                            Inquire on WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Ekaiva Garments</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium quality t-shirts crafted with care and attention to detail. 
+                        Your satisfaction is our priority.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Casual T-Shirts</a></li>
+                        <li><a href="#">Formal Shirts</a></li>
+                        <li><a href="#">Sports Wear</a></li>
+                        <li><a href="#">Graphic Tees</a></li>
+                        <li><a href="#">Premium Collection</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>123 Fashion Street</p>
+                                <p>Mumbai, Maharashtra 400001</p>
+                                <p>India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>+91 98765 43210</p>
+                                <p>+91 87654 32109</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>info@ekaivagarments.com</p>
+                                <p>support@ekaivagarments.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
+                                <p>Sunday: 10:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Ekaiva Garments. All rights reserved.</p>
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-google-pay"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
