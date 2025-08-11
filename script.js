@@ -251,7 +251,7 @@ Please provide more details about availability and ordering process.`;
     const encodedMessage = encodeURIComponent(message);
     
     // WhatsApp number (replace with your actual WhatsApp business number)
-    const whatsappNumber = '919876543210';
+    const whatsappNumber = '919447951594';
     
     // Create WhatsApp URL
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
