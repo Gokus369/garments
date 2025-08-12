@@ -50,8 +50,118 @@ document.addEventListener('DOMContentLoaded', function() {
     renderProducts();
     updateAdminStats();
     renderAdminProducts();
+    initVisibleAnimations();
+    addScrollAnimations();
 });
 
+// Initialize visible animations
+function initVisibleAnimations() {
+    // Add staggered delays to product cards
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach((card, index) => {
+        card.style.setProperty('--delay', `${index * 0.1}s`);
+    });
+    
+    // Add staggered delays to contact cards
+    const contactCards = document.querySelectorAll('.contact-card');
+    contactCards.forEach((card, index) => {
+        card.style.setProperty('--delay', `${index * 0.2}s`);
+    });
+    
+    // Add typing effect to hero title
+    const heroTitle = document.querySelector('.hero-content h1');
+    if (heroTitle) {
+        heroTitle.classList.add('typing-effect');
+    }
+    
+    // Make CTA button attention-grabbing
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.classList.add('attention-button');
+    }
+}
+
+// Add scroll-triggered animations
+function addScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Add special effects for different elements
+                if (entry.target.classList.contains('product-card')) {
+                    setTimeout(() => {
+                        entry.target.style.animation = 'bounce 0.8s ease-out';
+                    }, 200);
+                }
+                
+                if (entry.target.classList.contains('contact-card')) {
+                    setTimeout(() => {
+                        entry.target.style.animation = 'zoomIn 0.6s ease-out';
+                    }, 100);
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animations
+    document.querySelectorAll('.product-card, .contact-card, .section-title').forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+}
+
+// Add special hover effects
+function addSpecialEffects() {
+    // Add ripple effect to buttons
+    document.querySelectorAll('.add-to-cart-btn, .cta-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// Add CSS for ripple effect
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
 // Event listeners
 function setupEventListeners() {
     // Mobile menu toggle
