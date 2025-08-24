@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Ekaiva Garments</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="window.location.href='index.html'">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Ekaiva</span>
+                <div class="brand-glow"></div>
+            </div>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <span>Home</span>
+                    <div class="nav-link-glow"></div>
+                </a>
+                <a href="products.html" class="nav-link">
+                    <span>Products</span>
+                    <div class="nav-link-glow"></div>
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <span>Contact</span>
+                    <div class="nav-link-glow"></div>
+                </a>
+                <a href="admin.html" class="nav-link active">
+                    <i class="fas fa-user-shield"></i> Admin
+                </a>
+                <a href="#" class="nav-link logout-btn" onclick="logoutAdmin()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Content -->
+    <div class="admin-page">
+        <div class="container">
+            <!-- Admin Header -->
+            <div class="admin-header">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p>Welcome back! Manage your product catalog, categories, and colors</p>
+                </div>
+                <div class="admin-actions">
+                    <button class="admin-btn" onclick="toggleProductForm()">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                    <button class="admin-btn" onclick="toggleCategoryForm()">
+                        <i class="fas fa-tags"></i> Manage Categories
+                    </button>
+                    <button class="admin-btn" onclick="toggleColorForm()">
+                        <i class="fas fa-palette"></i> Manage Colors
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="card-glow"></div>
+                    <div class="stat-content">
+                        <div>
+                            <p>Total Products</p>
+                            <h3 id="total-products">0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="card-glow"></div>
+                    <div class="stat-content">
+                        <div>
+                            <p>Categories</p>
+                            <h3 id="total-categories">0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="card-glow"></div>
+                    <div class="stat-content">
+                        <div>
+                            <p>Colors</p>
+                            <h3 id="total-colors">0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="card-glow"></div>
+                    <div class="stat-content">
+                        <div>
+                            <p>Avg. Price</p>
+                            <h3 id="avg-price">₹0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Product Form -->
+            <div class="admin-form product-form" id="product-form" style="display: none;">
+                <div class="form-header">
+                    <h2><i class="fas fa-plus-circle"></i> Add New Product</h2>
+                    <button class="close-btn" onclick="toggleProductForm()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="add-product-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label><i class="fas fa-tag"></i> Product Name</label>
+                            <input type="text" id="product-name" required placeholder="Enter product name">
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-rupee-sign"></i> Price (₹)</label>
+                            <input type="number" id="product-price" step="0.01" required placeholder="Enter price">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-list"></i> Category</label>
+                            <select id="product-category" required>
+                                <option value="">Select Category</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-image"></i> Product Images</label>
+                            <div class="image-upload">
+                                <input type="file" id="product-images" multiple accept="image/*"
+                                    onchange="handleImageUpload(this)">
+                                <div class="image-upload-area"
+                                    onclick="document.getElementById('product-images').click()">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload images or drag and drop</p>
+                                    <span>PNG, JPG, JPEG up to 5MB each</span>
+                                </div>
+                                <div class="image-preview" id="image-preview"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-ruler"></i> Available Sizes</label>
+                            <div class="checkbox-grid" id="sizes-group">
+                                <label><input type="checkbox" value="XS"> XS</label>
+                                <label><input type="checkbox" value="S"> S</label>
+                                <label><input type="checkbox" value="M"> M</label>
+                                <label><input type="checkbox" value="L"> L</label>
+                                <label><input type="checkbox" value="XL"> XL</label>
+                                <label><input type="checkbox" value="XXL"> XXL</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-palette"></i> Available Colors</label>
+                            <div class="color-selection" id="colors-group">
+                                <!-- Colors will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-align-left"></i> Description</label>
+                            <textarea id="product-description" rows="4" required
+                                placeholder="Enter product description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-save"></i> Add Product
+                        </button>
+                        <button type="button" class="cancel-btn" onclick="toggleProductForm()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Category Management Form -->
+            <div class="admin-form category-form" id="category-form" style="display: none;">
+                <div class="form-header">
+                    <h2><i class="fas fa-tags"></i> Manage Categories</h2>
+                    <button class="close-btn" onclick="toggleCategoryForm()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="form-content">
+                    <div class="add-category">
+                        <div class="form-group">
+                            <label><i class="fas fa-plus"></i> Add New Category</label>
+                            <div class="input-with-btn">
+                                <input type="text" id="new-category" placeholder="Enter category name">
+                                <button type="button" onclick="addCategory()" class="add-btn">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="categories-list">
+                        <h3>Existing Categories</h3>
+                        <div class="categories-grid" id="categories-grid">
+                            <!-- Categories will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Management Form -->
+            <div class="admin-form color-form" id="color-form" style="display: none;">
+                <div class="form-header">
+                    <h2><i class="fas fa-palette"></i> Manage Colors</h2>
+                    <button class="close-btn" onclick="toggleColorForm()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="form-content">
+                    <div class="add-color">
+                        <div class="form-group">
+                            <label><i class="fas fa-plus"></i> Add New Color</label>
+                            <div class="color-input-group">
+                                <input type="text" id="new-color-name" placeholder="Enter color name">
+                                <input type="color" id="new-color-value" value="#000000">
+                                <button type="button" onclick="addColor()" class="add-btn">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="colors-list">
+                        <h3>Existing Colors</h3>
+                        <div class="colors-grid" id="colors-grid">
+                            <!-- Colors will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="admin-table">
+                <div class="table-header">
+                    <h2><i class="fas fa-box"></i> Product Catalog</h2>
+                    <div class="table-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="search-products" placeholder="Search products...">
+                        </div>
+                        <select id="filter-category">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="products-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Colors</th>
+                                <th>Sizes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-tbody">
+                            <!-- Products will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state" id="empty-products" style="display: none;">
+                    <i class="fas fa-box-open"></i>
+                    <h3>No products found</h3>
+                    <p>Add your first product to get started</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-backdrop" onclick="closeProductModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Product Details</h2>
+                <button class="close-btn" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Product details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Ekaiva Garments</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="window.location.href='index.html'">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Ekaiva</span>
+                <div class="brand-glow"></div>
+            </div>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <span>Home</span>
+                    <div class="nav-link-glow"></div>
+                </a>
+                <a href="products.html" class="nav-link">
+                    <span>Products</span>
+                    <div class="nav-link-glow"></div>
+                </a>
+                <a href="contact.html" class="nav-link active">
+                    <span>Contact</span>
+                    <div class="nav-link-glow"></div>
+                </a>
+                <a href="#" class="nav-link" id="admin-link" onclick="showAdminLogin()">
+                    <i class="fas fa-user-shield"></i> Admin
+                </a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Page -->
+    <main class="contact-page">
+        <div class="page-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Get in touch with us for any inquiries or support</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="contact-content">
+                <!-- Contact Cards -->
+                <section class="contact-cards">
+                    <div class="contact-card">
+                        <div class="card-glow"></div>
+                        <div class="contact-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Chat with us instantly for quick responses</p>
+                        <a href="https://wa.me/919876543210" class="contact-btn whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat Now
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="card-glow"></div>
+                        <div class="contact-icon phone">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>Call us directly for immediate assistance</p>
+                        <a href="tel:+919876543210" class="contact-btn phone-btn">
+                            <i class="fas fa-phone"></i> +91 98765 43210
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="card-glow"></div>
+                        <div class="contact-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>Send us an email for detailed inquiries</p>
+                        <a href="mailto:info@ekaivagarments.com" class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="card-glow"></div>
+                        <div class="contact-icon location">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Come to our physical store</p>
+                        <div class="address">
+                            <p><strong>123 Fashion Street</strong></p>
+                            <p>Mumbai, Maharashtra 400001</p>
+                            <p>India</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Business Hours -->
+                <section class="business-info">
+                    <div class="business-hours">
+                        <h2><i class="fas fa-clock"></i> Business Hours</h2>
+                        <div class="hours-grid">
+                            <div class="hours-item">
+                                <div class="day">
+                                    <i class="fas fa-calendar-day"></i>
+                                    <span>Monday - Friday</span>
+                                </div>
+                                <div class="time">9:00 AM - 8:00 PM</div>
+                            </div>
+                            <div class="hours-item">
+                                <div class="day">
+                                    <i class="fas fa-calendar-day"></i>
+                                    <span>Saturday</span>
+                                </div>
+                                <div class="time">9:00 AM - 6:00 PM</div>
+                            </div>
+                            <div class="hours-item">
+                                <div class="day">
+                                    <i class="fas fa-calendar-day"></i>
+                                    <span>Sunday</span>
+                                </div>
+                                <div class="time">10:00 AM - 4:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="services-info">
+                        <h2><i class="fas fa-concierge-bell"></i> Our Services</h2>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div>
+                                    <h4>Custom Orders</h4>
+                                    <p>Tailored clothing to your specifications</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-truck"></i>
+                                <div>
+                                    <h4>Home Delivery</h4>
+                                    <p>Free delivery within the city</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-sync-alt"></i>
+                                <div>
+                                    <h4>Easy Returns</h4>
+                                    <p>7-day hassle-free return policy</p>
+                                </div>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-medal"></i>
+                                <div>
+                                    <h4>Quality Assurance</h4>
+                                    <p>100% quality guarantee</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Form -->
+                <section class="contact-form-section">
+                    <div class="form-container">
+                        <h2><i class="fas fa-paper-plane"></i> Send us a Message</h2>
+                        <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-user"></i> Full Name</label>
+                                    <input type="text" id="full-name" placeholder="Your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-envelope"></i> Email</label>
+                                    <input type="email" id="email" placeholder="your@email.com" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-phone"></i> Phone Number</label>
+                                    <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-tag"></i> Subject</label>
+                                    <select id="subject" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="product-inquiry">Product Inquiry</option>
+                                        <option value="custom-order">Custom Order</option>
+                                        <option value="support">Support</option>
+                                        <option value="feedback">Feedback</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label><i class="fas fa-comment"></i> Message</label>
+                                <textarea id="message" rows="5" placeholder="Tell us how we can help you..."
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="cta-button primary full-width">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Ekaiva Garments</span>
+                    </div>
+                    <p class="footer-description">
+                        Premium quality garments crafted with care and attention to detail.
+                        Your satisfaction is our priority.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Casual Wear</a></li>
+                        <li><a href="#">Formal Wear</a></li>
+                        <li><a href="#">Sports Wear</a></li>
+                        <li><a href="#">Premium Collection</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Ekaiva Garments. All rights reserved.</p>
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-google-pay"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="admin-login-modal">
+        <div class="modal-backdrop" onclick="hideAdminLogin()"></div>
+        <div class="modal-content admin-login-content">
+            <div class="modal-header">
+                <h2>Admin Login</h2>
+                <button class="close-btn" onclick="hideAdminLogin()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="admin-username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="admin-password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="cta-button primary full-width">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

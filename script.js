@@ -1,248 +1,410 @@
-// Global variables
-let products = [
-    {
-        id: '1',
-        name: 'Classic Cotton T-Shirt',
-        price: 25.99,
-        image: 'https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=400',
-        category: 'casual',
-        sizes: ['S', 'M', 'L', 'XL'],
-        colors: ['White', 'Black', 'Navy'],
-        description: 'Premium quality cotton t-shirt with comfortable fit'
-    },
-    {
-        id: '2',
-        name: 'Premium Polo Shirt',
-        price: 35.99,
-        image: 'https://images.pexels.com/photos/5710082/pexels-photo-5710082.jpeg?auto=compress&cs=tinysrgb&w=400',
-        category: 'formal',
-        sizes: ['S', 'M', 'L', 'XL'],
-        colors: ['White', 'Blue', 'Grey'],
-        description: 'Elegant polo shirt perfect for business casual'
-    },
-    {
-        id: '3',
-        name: 'Graphic Print Tee',
-        price: 22.99,
-        image: 'https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg?auto=compress&cs=tinysrgb&w=400',
-        category: 'casual',
-        sizes: ['S', 'M', 'L', 'XL'],
-        colors: ['Black', 'White'],
-        description: 'Trendy graphic print t-shirt for casual wear'
-    }
+// Global variables and utilities
+let currentUser = null;
+let products = [];
+let categories = ['casual', 'formal', 'sports', 'ethnic'];
+let colors = [
+    { name: 'White', value: '#FFFFFF' },
+    { name: 'Black', value: '#000000' },
+    { name: 'Navy', value: '#001f3f' },
+    { name: 'Grey', value: '#808080' },
+    { name: 'Red', value: '#FF4136' },
+    { name: 'Blue', value: '#0074D9' },
+    { name: 'Green', value: '#2ECC40' },
+    { name: 'Orange', value: '#FF851B' }
 ];
 
-let currentProduct = null;
-let selectedSize = '';
-let selectedColor = '';
+// Admin credentials
+const ADMIN_CREDENTIALS = {
+    username: 'admin',
+    password: 'admin123'
+};
 
-// DOM elements
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const searchInput = document.getElementById('search-input');
-const categoryFilter = document.getElementById('category-filter');
-const productsGrid = document.getElementById('products-grid');
-const productModal = document.getElementById('product-modal');
+// Initialize data from localStorage
+function initializeData() {
+    const savedProducts = localStorage.getItem('ekaiva_products');
+    const savedCategories = localStorage.getItem('ekaiva_categories');
+    const savedColors = localStorage.getItem('ekaiva_colors');
 
-// Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
+    if (savedProducts) {
+        products = JSON.parse(savedProducts);
+    } else {
+        // Add some demo products
+        products = [
+            {
+                id: '1',
+                name: 'Premium Cotton T-Shirt',
+                price: 899,
+                images: ['https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=400'],
+                category: 'casual',
+                sizes: ['S', 'M', 'L', 'XL'],
+                colors: ['White', 'Black', 'Navy'],
+                description: 'Premium quality cotton t-shirt with comfortable fit and modern styling. Perfect for everyday wear.',
+                dateAdded: new Date().toISOString()
+            },
+            {
+                id: '2',
+                name: 'Elegant Polo Shirt',
+                price: 1299,
+                images: ['https://images.pexels.com/photos/5710082/pexels-photo-5710082.jpeg?auto=compress&cs=tinysrgb&w=400'],
+                category: 'formal',
+                sizes: ['S', 'M', 'L', 'XL'],
+                colors: ['White', 'Blue', 'Grey'],
+                description: 'Sophisticated polo shirt perfect for business casual and professional wear. Made with premium materials.',
+                dateAdded: new Date().toISOString()
+            },
+            {
+                id: '3',
+                name: 'Graphic Design Hoodie',
+                price: 1599,
+                images: ['https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg?auto=compress&cs=tinysrgb&w=400'],
+                category: 'casual',
+                sizes: ['M', 'L', 'XL', 'XXL'],
+                colors: ['Black', 'Grey', 'Navy'],
+                description: 'Trendy graphic hoodie with unique designs. Comfortable and stylish for casual outings.',
+                dateAdded: new Date().toISOString()
+            }
+        ];
+        localStorage.setItem('ekaiva_products', JSON.stringify(products));
+    }
+
+    if (savedCategories) {
+        categories = JSON.parse(savedCategories);
+    } else {
+        localStorage.setItem('ekaiva_categories', JSON.stringify(categories));
+    }
+
+    if (savedColors) {
+        colors = JSON.parse(savedColors);
+    } else {
+        localStorage.setItem('ekaiva_colors', JSON.stringify(colors));
+    }
+}
+
+// Check if user is admin
+function isAdmin() {
+    return localStorage.getItem('ekaiva_admin_logged_in') === 'true';
+}
+
+// Admin login functions
+function showAdminLogin() {
+    const modal = document.getElementById('admin-login-modal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function hideAdminLogin() {
+    const modal = document.getElementById('admin-login-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function loginAdmin(username, password) {
+    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+        localStorage.setItem('ekaiva_admin_logged_in', 'true');
+        hideAdminLogin();
+        showNotification('Login successful! Redirecting to admin panel...', 'success');
+        setTimeout(() => {
+            window.location.href = 'admin.html';
+        }, 1500);
+        return true;
+    }
+    return false;
+}
+
+function logoutAdmin() {
+    localStorage.removeItem('ekaiva_admin_logged_in');
+    showNotification('Logged out successfully!', 'success');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 1500);
+}
+
+// Check admin access for admin page
+function checkAdminAccess() {
+    if (window.location.pathname.includes('admin.html') && !isAdmin()) {
+        showNotification('Access denied! Please login as admin.', 'error');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 2000);
+        return false;
+    }
+    return true;
+}
+
+// Save data to localStorage
+function saveProducts() {
+    localStorage.setItem('ekaiva_products', JSON.stringify(products));
+}
+
+function saveCategories() {
+    localStorage.setItem('ekaiva_categories', JSON.stringify(categories));
+}
+
+function saveColors() {
+    localStorage.setItem('ekaiva_colors', JSON.stringify(colors));
+}
+
+// DOM Content Loaded
+document.addEventListener('DOMContentLoaded', function () {
+    initializeData();
     setupEventListeners();
-    renderProducts();
-    updateAdminStats();
-    renderAdminProducts();
-    initVisibleAnimations();
-    addScrollAnimations();
+    checkAdminAccess();
+
+    // Initialize based on current page
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    if (currentPage === 'products.html') {
+        initializeProductsPage();
+    } else if (currentPage === 'index.html' || currentPage === '') {
+        initializeHomePage();
+    } else if (currentPage === 'contact.html') {
+        initializeContactPage();
+    }
+
+    // Handle loading screen
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+    }, 1500);
 });
 
-// Initialize visible animations
-function initVisibleAnimations() {
-    // Add staggered delays to product cards
-    const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach((card, index) => {
-        card.style.setProperty('--delay', `${index * 0.1}s`);
+// Setup Event Listeners
+function setupEventListeners() {
+    // Navbar scroll effect
+    window.addEventListener('scroll', function () {
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
     });
-    
-    // Add staggered delays to contact cards
-    const contactCards = document.querySelectorAll('.contact-card');
-    contactCards.forEach((card, index) => {
-        card.style.setProperty('--delay', `${index * 0.2}s`);
-    });
-    
-    // Add typing effect to hero title
-    const heroTitle = document.querySelector('.hero-content h1');
-    if (heroTitle) {
-        heroTitle.classList.add('typing-effect');
-    }
-    
-    // Make CTA button attention-grabbing
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.classList.add('attention-button');
-    }
-}
 
-// Add scroll-triggered animations
-function addScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Add special effects for different elements
-                if (entry.target.classList.contains('product-card')) {
-                    setTimeout(() => {
-                        entry.target.style.animation = 'bounce 0.8s ease-out';
-                    }, 200);
-                }
-                
-                if (entry.target.classList.contains('contact-card')) {
-                    setTimeout(() => {
-                        entry.target.style.animation = 'zoomIn 0.6s ease-out';
-                    }, 100);
-                }
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // Admin login form
+    const adminLoginForm = document.getElementById('admin-login-form');
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+
+            if (loginAdmin(username, password)) {
+                // Login successful
+            } else {
+                showNotification('Invalid username or password!', 'error');
             }
         });
-    }, observerOptions);
-    
-    // Observe elements for animations
-    document.querySelectorAll('.product-card, .contact-card, .section-title').forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
-    });
-}
+    }
 
-// Add special hover effects
-function addSpecialEffects() {
-    // Add ripple effect to buttons
-    document.querySelectorAll('.add-to-cart-btn, .cta-button').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.5);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s linear;
-                pointer-events: none;
-            `;
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
+    // Contact form
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            handleContactForm();
         });
-    });
+    }
 }
 
-// Add CSS for ripple effect
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent = `
-    @keyframes ripple {
-        to {
-            transform: scale(4);
-            opacity: 0;
+// Initialize Home Page
+function initializeHomePage() {
+    console.log('Home page initialized');
+}
+
+// Initialize Contact Page
+function initializeContactPage() {
+    console.log('Contact page initialized');
+}
+
+// Handle contact form submission
+function handleContactForm() {
+    const fullName = document.getElementById('full-name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    // Validate form
+    if (!fullName || !email || !phone || !subject || !message) {
+        showNotification('Please fill in all fields!', 'error');
+        return;
+    }
+
+    // Create WhatsApp message
+    const whatsappMessage = `New Contact Form Submission:
+
+Name: ${fullName}
+Email: ${email}
+Phone: ${phone}
+Subject: ${subject}
+
+Message:
+${message}`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappNumber = '919876543210';
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Open WhatsApp
+    window.open(whatsappURL, '_blank');
+
+    // Show success message and reset form
+    showNotification('Message sent successfully! Opening WhatsApp...', 'success');
+    document.getElementById('contact-form').reset();
+}
+
+// Initialize Products Page
+function initializeProductsPage() {
+    console.log('Products page initialized');
+
+    // Populate category filter
+    populateCategoryFilter();
+
+    // Setup search and filter event listeners
+    setupProductsPageListeners();
+
+    // Render products
+    renderProducts();
+}
+
+function setupProductsPageListeners() {
+    const searchInput = document.getElementById('search-input');
+    const categoryFilter = document.getElementById('category-filter');
+    const sortSelect = document.getElementById('sort-select');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', filterAndRenderProducts);
+    }
+
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', filterAndRenderProducts);
+    }
+
+    if (sortSelect) {
+        sortSelect.addEventListener('change', filterAndRenderProducts);
+    }
+}
+
+function populateCategoryFilter() {
+    const categoryFilter = document.getElementById('category-filter');
+    if (categoryFilter) {
+        // Clear existing options except "All Categories"
+        categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+
+        // Add category options
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            categoryFilter.appendChild(option);
+        });
+    }
+}
+
+// Product Filtering and Rendering
+function getFilteredProducts() {
+    const searchInput = document.getElementById('search-input');
+    const categoryFilter = document.getElementById('category-filter');
+    const sortSelect = document.getElementById('sort-select');
+
+    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+    const category = categoryFilter ? categoryFilter.value : 'all';
+    const sortBy = sortSelect ? sortSelect.value : 'name';
+
+    let filtered = products.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm);
+        const matchesCategory = category === 'all' || product.category === category;
+        return matchesSearch && matchesCategory;
+    });
+
+    // Sort products
+    filtered.sort((a, b) => {
+        switch (sortBy) {
+            case 'name':
+                return a.name.localeCompare(b.name);
+            case 'price-low':
+                return a.price - b.price;
+            case 'price-high':
+                return b.price - a.price;
+            case 'newest':
+                return new Date(b.dateAdded) - new Date(a.dateAdded);
+            default:
+                return 0;
         }
-    }
-`;
-document.head.appendChild(rippleStyle);
-// Event listeners
-function setupEventListeners() {
-    // Mobile menu toggle
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
     });
 
-    // Search and filter
-    searchInput.addEventListener('input', filterProducts);
-    categoryFilter.addEventListener('change', filterProducts);
-
-    // Admin form
-    const addProductForm = document.getElementById('add-product-form');
-    if (addProductForm) {
-        addProductForm.addEventListener('submit', handleAddProduct);
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === productModal) {
-            closeModal();
-        }
-    });
+    return filtered;
 }
 
-// Navigation functions
-function showPage(pageId) {
-    // Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-
-    // Show selected page
-    const targetPage = document.getElementById(pageId + '-page');
-    if (targetPage) {
-        targetPage.classList.add('active');
-    }
-
-    // Update navigation active state
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => link.classList.remove('active'));
-    
-    // Close mobile menu
-    navMenu.classList.remove('active');
-
-    // Render page-specific content
-    if (pageId === 'products') {
-        renderProducts();
-    } else if (pageId === 'admin') {
-        updateAdminStats();
-        renderAdminProducts();
-    }
+function filterAndRenderProducts() {
+    renderProducts();
 }
 
-// Product functions
 function renderProducts() {
-    const grid = document.getElementById('products-grid');
-    if (!grid) return;
+    const productsGrid = document.getElementById('products-grid');
+    const emptyProducts = document.getElementById('empty-products');
+
+    if (!productsGrid) return;
 
     const filteredProducts = getFilteredProducts();
 
     if (filteredProducts.length === 0) {
-        grid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
-                <i class="fas fa-search" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 20px;"></i>
-                <h3 style="color: #64748b; margin-bottom: 10px;">No products found</h3>
-                <p style="color: #94a3b8;">Try adjusting your search or filter criteria</p>
-            </div>
-        `;
+        productsGrid.style.display = 'none';
+        if (emptyProducts) emptyProducts.style.display = 'block';
         return;
     }
 
-    grid.innerHTML = filteredProducts.map(product => `
+    productsGrid.style.display = 'grid';
+    if (emptyProducts) emptyProducts.style.display = 'none';
+
+    productsGrid.innerHTML = filteredProducts.map(product => `
         <div class="product-card" onclick="openProductModal('${product.id}')">
+            <div class="product-glow"></div>
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.images[0]}" alt="${product.name}">
+                <div class="image-overlay">
+                    <div class="quick-view">
+                        <i class="fas fa-eye"></i>
+                        <span>Quick View</span>
+                    </div>
+                </div>
             </div>
             <div class="product-info">
                 <h3>${product.name}</h3>
                 <p>${product.description}</p>
                 <div class="product-meta">
-                    <div class="product-price">$${product.price}</div>
+                    <div class="product-price">₹${product.price}</div>
                     <div class="product-category">${product.category}</div>
                 </div>
                 <div class="product-details">
@@ -256,25 +418,19 @@ function renderProducts() {
             </div>
         </div>
     `).join('');
-}
 
-function getFilteredProducts() {
-    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-    const category = categoryFilter ? categoryFilter.value : 'all';
-
-    return products.filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
-                            product.description.toLowerCase().includes(searchTerm);
-        const matchesCategory = category === 'all' || product.category === category;
-        return matchesSearch && matchesCategory;
+    // Add stagger animation
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
     });
 }
 
-function filterProducts() {
-    renderProducts();
-}
+// Product Modal
+let currentProduct = null;
+let selectedSize = '';
+let selectedColor = '';
 
-// Modal functions
 function openProductModal(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -284,61 +440,113 @@ function openProductModal(productId) {
     selectedColor = product.colors[0];
 
     // Populate modal content
-    document.getElementById('modal-product-image').src = product.image;
     document.getElementById('modal-product-name').textContent = product.name;
-    document.getElementById('modal-product-price').textContent = `$${product.price}`;
+    document.getElementById('modal-product-price').textContent = `₹${product.price}`;
     document.getElementById('modal-product-description').textContent = product.description;
+
+    // Set main image
+    const mainImage = document.getElementById('modal-product-image');
+    if (mainImage) {
+        mainImage.src = product.images[0];
+        mainImage.alt = product.name;
+    }
+
+    // Populate image thumbnails
+    const thumbnailsContainer = document.getElementById('image-thumbnails');
+    if (thumbnailsContainer && product.images.length > 1) {
+        thumbnailsContainer.innerHTML = product.images.map((image, index) => `
+            <img src="${image}" alt="${product.name}" 
+                 onclick="changeMainImage('${image}')" 
+                 class="${index === 0 ? 'active' : ''}">
+        `).join('');
+    }
 
     // Render size options
     const sizeOptions = document.getElementById('modal-size-options');
-    sizeOptions.innerHTML = product.sizes.map(size => `
-        <div class="size-option ${size === selectedSize ? 'selected' : ''}" 
-             onclick="selectSize('${size}')">
-            ${size}
-        </div>
-    `).join('');
+    if (sizeOptions) {
+        sizeOptions.innerHTML = product.sizes.map(size => `
+            <div class="size-option ${size === selectedSize ? 'selected' : ''}" 
+                 onclick="selectSize('${size}')">
+                ${size}
+            </div>
+        `).join('');
+    }
 
     // Render color options
     const colorOptions = document.getElementById('modal-color-options');
-    colorOptions.innerHTML = product.colors.map(color => `
-        <div class="color-option ${color === selectedColor ? 'selected' : ''}" 
-             onclick="selectColor('${color}')">
-            ${color}
-        </div>
-    `).join('');
+    if (colorOptions) {
+        colorOptions.innerHTML = product.colors.map(color => `
+            <div class="color-option ${color === selectedColor ? 'selected' : ''}" 
+                 onclick="selectColor('${color}')">
+                ${color}
+            </div>
+        `).join('');
+    }
 
     // Setup add to cart button
     const addToCartBtn = document.getElementById('modal-add-to-cart');
-    addToCartBtn.onclick = () => inquireOnWhatsApp(product.id);
+    if (addToCartBtn) {
+        addToCartBtn.onclick = () => inquireOnWhatsApp(product.id);
+    }
 
     // Show modal
-    productModal.style.display = 'block';
+    const modal = document.getElementById('product-modal');
+    if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeModal() {
-    productModal.style.display = 'none';
+    const modal = document.getElementById('product-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
     currentProduct = null;
     selectedSize = '';
     selectedColor = '';
 }
 
+function changeMainImage(imageSrc) {
+    const mainImage = document.getElementById('modal-product-image');
+    if (mainImage) {
+        mainImage.src = imageSrc;
+    }
+
+    // Update thumbnail active state
+    const thumbnails = document.querySelectorAll('#image-thumbnails img');
+    thumbnails.forEach(thumb => {
+        thumb.classList.remove('active');
+        if (thumb.src === imageSrc) {
+            thumb.classList.add('active');
+        }
+    });
+}
+
 function selectSize(size) {
     selectedSize = size;
-    
+
     // Update UI
     const sizeOptions = document.querySelectorAll('.size-option');
     sizeOptions.forEach(option => {
-        option.classList.toggle('selected', option.textContent.trim() === size);
+        option.classList.remove('selected');
+        if (option.textContent.trim() === size) {
+            option.classList.add('selected');
+        }
     });
 }
 
 function selectColor(color) {
     selectedColor = color;
-    
+
     // Update UI
     const colorOptions = document.querySelectorAll('.color-option');
     colorOptions.forEach(option => {
-        option.classList.toggle('selected', option.textContent.trim() === color);
+        option.classList.remove('selected');
+        if (option.textContent.trim() === color) {
+            option.classList.add('selected');
+        }
     });
 }
 
@@ -348,10 +556,10 @@ function inquireOnWhatsApp(productId) {
     if (!product || !selectedSize || !selectedColor) return;
 
     // Create WhatsApp message
-    const message = `Hi! I'm interested in buying this product:
+    const message = `Hi! I'm interested in this product:
 
 Product: ${product.name}
-Price: $${product.price}
+Price: ₹${product.price}
 Size: ${selectedSize}
 Color: ${selectedColor}
 
@@ -359,190 +567,167 @@ Please provide more details about availability and ordering process.`;
 
     // Encode message for URL
     const encodedMessage = encodeURIComponent(message);
-    
-    // WhatsApp number (replace with your actual WhatsApp business number)
-    const whatsappNumber = '919447951594';
-    
+
+    // WhatsApp number
+    const whatsappNumber = '919876543210';
+
     // Create WhatsApp URL
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    
+
     // Open WhatsApp
     window.open(whatsappURL, '_blank');
-    
+
     closeModal();
-    
+
     // Show success message
-    showNotification('Opening WhatsApp to inquire about this product!');
-}
-
-// Admin functions
-function toggleProductForm() {
-    const form = document.getElementById('product-form');
-    if (form) {
-        form.style.display = form.style.display === 'none' ? 'block' : 'none';
-    }
-}
-
-function handleAddProduct(e) {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const sizes = Array.from(document.querySelectorAll('#sizes-group input:checked')).map(cb => cb.value);
-    const colors = Array.from(document.querySelectorAll('#colors-group input:checked')).map(cb => cb.value);
-
-    if (sizes.length === 0 || colors.length === 0) {
-        alert('Please select at least one size and one color.');
-        return;
-    }
-
-    const newProduct = {
-        id: Date.now().toString(),
-        name: document.getElementById('product-name').value,
-        price: parseFloat(document.getElementById('product-price').value),
-        image: document.getElementById('product-image').value,
-        category: document.getElementById('product-category').value,
-        sizes: sizes,
-        colors: colors,
-        description: document.getElementById('product-description').value
-    };
-
-    products.push(newProduct);
-    
-    // Reset form
-    e.target.reset();
-    document.querySelectorAll('#sizes-group input, #colors-group input').forEach(cb => cb.checked = false);
-    
-    // Hide form
-    toggleProductForm();
-    
-    // Update displays
-    updateAdminStats();
-    renderAdminProducts();
-    renderProducts();
-    
-    showNotification('Product added successfully!');
-}
-
-function deleteProduct(productId) {
-    if (confirm('Are you sure you want to delete this product?')) {
-        products = products.filter(p => p.id !== productId);
-        updateAdminStats();
-        renderAdminProducts();
-        renderProducts();
-        showNotification('Product deleted successfully!');
-    }
-}
-
-function updateAdminStats() {
-    const totalProducts = products.length;
-    const avgPrice = totalProducts > 0 ? 
-        (products.reduce((sum, p) => sum + p.price, 0) / totalProducts).toFixed(0) : 0;
-    const totalCategories = new Set(products.map(p => p.category)).size;
-    const totalColors = new Set(products.flatMap(p => p.colors)).size;
-
-    if (document.getElementById('total-products')) {
-        document.getElementById('total-products').textContent = totalProducts;
-    }
-    if (document.getElementById('avg-price')) {
-        document.getElementById('avg-price').textContent = `$${avgPrice}`;
-    }
-    if (document.getElementById('total-categories')) {
-        document.getElementById('total-categories').textContent = totalCategories;
-    }
-    if (document.getElementById('total-colors')) {
-        document.getElementById('total-colors').textContent = totalColors;
-    }
-}
-
-function renderAdminProducts() {
-    const tbody = document.getElementById('admin-products-tbody');
-    const emptyProducts = document.getElementById('empty-products');
-
-    if (!tbody) return;
-
-    if (products.length === 0) {
-        tbody.innerHTML = '';
-        if (emptyProducts) emptyProducts.style.display = 'block';
-        return;
-    }
-
-    if (emptyProducts) emptyProducts.style.display = 'none';
-
-    tbody.innerHTML = products.map(product => `
-        <tr>
-            <td>
-                <div class="product-cell">
-                    <img src="${product.image}" alt="${product.name}">
-                    <div>
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-desc">${product.description}</div>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <span class="category-badge">${product.category}</span>
-            </td>
-            <td class="price-cell">$${product.price}</td>
-            <td>
-                <div class="tags">
-                    ${product.sizes.map(size => `<span class="tag">${size}</span>`).join('')}
-                </div>
-            </td>
-            <td>
-                <div class="tags">
-                    ${product.colors.slice(0, 3).map(color => `<span class="tag">${color}</span>`).join('')}
-                    ${product.colors.length > 3 ? `<span class="tag">+${product.colors.length - 3}</span>` : ''}
-                </div>
-            </td>
-            <td>
-                <button class="delete-btn" onclick="deleteProduct('${product.id}')">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        </tr>
-    `).join('');
+    showNotification('Opening WhatsApp to inquire about this product!', 'success');
 }
 
 // Utility functions
-function showNotification(message) {
+function showNotification(message, type = 'success') {
     // Create notification element
     const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
     notification.style.cssText = `
         position: fixed;
-        top: 90px;
+        top: 100px;
         right: 20px;
-        background: #10b981;
+        background: ${type === 'error' ? '#E74C3C' : type === 'success' ? '#27AE60' : '#3498DB'};
         color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         z-index: 3000;
         animation: slideInRight 0.3s ease;
+        max-width: 350px;
+        font-weight: 600;
+        font-family: var(--font-primary);
+        border: 1px solid rgba(255, 255, 255, 0.2);
     `;
     notification.textContent = message;
 
     // Add to DOM
     document.body.appendChild(notification);
 
-    // Remove after 3 seconds
+    // Remove after 4 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.3s ease';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
         }, 300);
-    }, 3000);
+    }, 4000);
 }
 
-// Add CSS for notification animations
-const style = document.createElement('style');
-style.textContent = `
+// Generate unique ID
+function generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+// Format price
+function formatPrice(price) {
+    return `₹${price.toLocaleString('en-IN')}`;
+}
+
+// Add CSS for notifications and animations
+const additionalStyles = document.createElement('style');
+additionalStyles.textContent = `
     @keyframes slideInRight {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
+    
     @keyframes slideOutRight {
         from { transform: translateX(0); opacity: 1; }
         to { transform: translateX(100%); opacity: 0; }
     }
+    
+    .notification {
+        border-radius: 12px;
+        font-weight: 600;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+    }
+    
+    .notification.error {
+        background: linear-gradient(135deg, #E74C3C, #C0392B) !important;
+    }
+    
+    .notification.success {
+        background: linear-gradient(135deg, #27AE60, #2ECC71) !important;
+    }
+    
+    .notification.info {
+        background: linear-gradient(135deg, #3498DB, #2980B9) !important;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: var(--transition);
+    }
+
+    .product-card:hover .image-overlay {
+        opacity: 1;
+    }
+
+    .quick-view {
+        color: white;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .quick-view i {
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(9px, 9px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
 `;
-document.head.appendChild(style);
+document.head.appendChild(additionalStyles);
+
+// Export functions for use in other files
+window.EkaivaApp = {
+    initializeData,
+    products,
+    categories,
+    colors,
+    saveProducts,
+    saveCategories,
+    saveColors,
+    showNotification,
+    generateId,
+    formatPrice,
+    isAdmin,
+    checkAdminAccess
+};
+
+// Make functions available globally
+window.showAdminLogin = showAdminLogin;
+window.hideAdminLogin = hideAdminLogin;
+window.logoutAdmin = logoutAdmin;
+window.openProductModal = openProductModal;
+window.closeModal = closeModal;
+window.changeMainImage = changeMainImage;
+window.selectSize = selectSize;
+window.selectColor = selectColor;

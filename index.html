@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekaiva</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <!-- Animated Background -->
     <div class="animated-bg">
@@ -39,39 +43,30 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-brand" onclick="showPage('home')">
+            <div class="nav-brand" onclick="window.location.href='index.html'">
                 <i class="fas fa-shopping-bag"></i>
                 <span>Ekaiva</span>
                 <div class="brand-glow"></div>
             </div>
-            
+
             <div class="nav-menu" id="nav-menu">
-                <a href="#" class="nav-link active" onclick="showPage('home')">
+                <a href="index.html" class="nav-link active">
                     <span>Home</span>
                     <div class="nav-link-glow"></div>
                 </a>
-                <a href="#" class="nav-link" onclick="showPage('products')">
+                <a href="products.html" class="nav-link">
                     <span>Products</span>
                     <div class="nav-link-glow"></div>
                 </a>
-                <a href="#" class="nav-link" onclick="showPage('contact')">
+                <a href="contact.html" class="nav-link">
                     <span>Contact</span>
                     <div class="nav-link-glow"></div>
                 </a>
-                <a href="#" class="nav-link" id="admin-link" onclick="showPage('admin')" style="display: none;">
-                    <i class="fas fa-user"></i> Admin
-                </a>
-                <a href="#" class="nav-link" id="login-link" onclick="showPage('login')">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a>
-                <a href="#" class="nav-link" id="user-profile" style="display: none;">
-                    <i class="fas fa-user-circle"></i> <span id="user-name"></span>
-                </a>
-                <a href="#" class="nav-link" id="logout-link" onclick="logout()" style="display: none;">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                <a href="#" class="nav-link" id="admin-link" onclick="showAdminLogin()">
+                    <i class="fas fa-user-shield"></i> Admin
                 </a>
             </div>
-            
+
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -80,621 +75,183 @@
         </div>
     </nav>
 
-    <!-- Home Page -->
-    <div id="home-page" class="page active">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-bg-overlay"></div>
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">
-                        <!-- <span>✨ Premium Collection</span> -->
-                    </div>
-                    <h1 class="hero-title">
-                        <span class="title-line">Premium  for</span>
-                        <span class="title-line highlight">Every Style</span>
-                    </h1>
-                    <p>Discover our collection of high-quality, comfortable t-shirts crafted with premium materials and attention to detail.</p>
-                    <div class="hero-buttons">
-                        <button class="cta-button primary" onclick="showPage('products')">
-                            <span>Shop Now</span>
-                            <i class="fas fa-arrow-right"></i>
-                            <div class="button-glow"></div>
-                        </button>
-                        <button class="cta-button secondary" onclick="showPage('contact')">
-                            <span>Contact Us</span>
-                            <i class="fas fa-phone"></i>
-                        </button>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">1000+</span>
-                            <span class="stat-label">Happy Customers</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Premium Styles</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Support</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="image-backdrop"></div>
-                    <img src="https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Premium T-Shirts">
-                    <div class="image-overlay"></div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-arrow">
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <span>Scroll to explore</span>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
 
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <h2>Why Choose Ekaiva Garments?</h2>
-                <p class="section-subtitle">Experience the difference with our premium quality and service</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="card-glow"></div>
-                        <div class="feature-icon">
-                            <i class="fas fa-star"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>Premium Quality</h3>
-                        <p>100% premium cotton and finest materials for lasting comfort</p>
+                <h1 class="hero-title">
+                    <span class="title-line">Premium Fashion for</span>
+                    <span class="title-line highlight">Every Style</span>
+                </h1>
+                <p>Discover our collection of high-quality, comfortable garments crafted with premium materials and
+                    attention to detail.</p>
+                <div class="hero-buttons">
+                    <button class="cta-button primary" onclick="window.location.href='products.html'">
+                        <span>Shop Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <div class="button-glow"></div>
+                    </button>
+                    <button class="cta-button secondary" onclick="window.location.href='contact.html'">
+                        <span>Contact Us</span>
+                        <i class="fas fa-phone"></i>
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Happy Customers</span>
                     </div>
-                    
-                    <div class="feature-card">
-                        <div class="card-glow"></div>
-                        <div class="feature-icon">
-                            <i class="fas fa-truck"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>Fast Delivery</h3>
-                        <p>Quick and reliable shipping to your doorstep</p>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Premium Styles</span>
                     </div>
-                    
-                    <div class="feature-card">
-                        <div class="card-glow"></div>
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>Quality Guarantee</h3>
-                        <p>100% satisfaction guarantee or your money back</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="card-glow"></div>
-                        <div class="feature-icon">
-                            <i class="fas fa-headphones"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>24/7 Support</h3>
-                        <p>Always here to help with any questions or concerns</p>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support</span>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="hero-image">
+                <div class="image-backdrop"></div>
+                <img src="https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Premium Fashion">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
 
-        <!-- Collections Section -->
-        <section class="collections">
-            <div class="container">
-                <h2>Our Collections</h2>
-                <p class="section-subtitle">From casual to formal, find your perfect style</p>
-                
-                <div class="collections-grid">
-                    <div class="collection-card">
-                        <div class="collection-glow"></div>
-                        <img src="https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Casual Collection">
-                        <div class="collection-overlay">
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Ekaiva Garments?</h2>
+            <p class="section-subtitle">Experience the difference with our premium quality and service</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="card-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                        <div class="icon-pulse"></div>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>100% premium materials for lasting comfort and style</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                        <div class="icon-pulse"></div>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and reliable shipping to your doorstep</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="icon-pulse"></div>
+                    </div>
+                    <h3>Quality Guarantee</h3>
+                    <p>100% satisfaction guarantee or your money back</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-glow"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-headphones"></i>
+                        <div class="icon-pulse"></div>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help with any questions or concerns</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="collections">
+        <div class="container">
+            <h2>Our Collections</h2>
+            <p class="section-subtitle">From casual to formal, find your perfect style</p>
+
+            <div class="collections-grid">
+                <div class="collection-card">
+                    <div class="collection-glow"></div>
+                    <img src="https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Casual Collection">
+                    <div class="collection-overlay">
+                        <div>
                             <h3>Casual Collection</h3>
                             <p>Everyday comfort meets style</p>
-                            <div class="collection-icon">
-                                <i class="fas fa-tshirt"></i>
-                            </div>
+                        </div>
+                        <div class="collection-icon">
+                            <i class="fas fa-tshirt"></i>
                         </div>
                     </div>
-                    
-                    <div class="collection-card">
-                        <div class="collection-glow"></div>
-                        <img src="https://images.pexels.com/photos/5710082/pexels-photo-5710082.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Formal Collection">
-                        <div class="collection-overlay">
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-glow"></div>
+                    <img src="https://images.pexels.com/photos/5710082/pexels-photo-5710082.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Formal Collection">
+                    <div class="collection-overlay">
+                        <div>
                             <h3>Formal Collection</h3>
                             <p>Professional elegance</p>
-                            <div class="collection-icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
+                        </div>
+                        <div class="collection-icon">
+                            <i class="fas fa-user-tie"></i>
                         </div>
                     </div>
-                    
-                    <div class="collection-card">
-                        <div class="collection-glow"></div>
-                        <img src="https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Graphic Collection">
-                        <div class="collection-overlay">
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-glow"></div>
+                    <img src="https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Graphic Collection">
+                    <div class="collection-overlay">
+                        <div>
                             <h3>Graphic Collection</h3>
                             <p>Express your personality</p>
-                            <div class="collection-icon">
-                                <i class="fas fa-paint-brush"></i>
-                            </div>
+                        </div>
+                        <div class="collection-icon">
+                            <i class="fas fa-paint-brush"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <h2>Ready to Upgrade Your Wardrobe?</h2>
-                <p>Join thousands of satisfied customers who trust Ekaiva Garments for quality and style.</p>
-                <button class="cta-button primary" onclick="showPage('products')">
-                    <span>Start Shopping Today</span>
-                    <i class="fas fa-rocket"></i>
-                    <div class="button-glow"></div>
-                </button>
-            </div>
-            <div class="cta-particles">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Products Page -->
-    <div id="products-page" class="page">
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="container">
-            <div class="page-header">
-                <h1>Our T-Shirt Collection</h1>
-                <p>Discover premium quality t-shirts for every occasion</p>
-            </div>
-
-            <!-- Search and Filter -->
-            <div class="search-filter">
-                <div class="search-box">
-                    <div class="input-glow"></div>
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="search-input" placeholder="Search products...">
-                </div>
-                
-                <div class="filter-box">
-                    <div class="input-glow"></div>
-                    <i class="fas fa-filter"></i>
-                    <select id="category-filter">
-                        <option value="all">All Categories</option>
-                        <option value="casual">Casual</option>
-                        <option value="formal">Formal</option>
-                        <option value="sports">Sports</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="products-grid" id="products-grid">
-                <!-- Products will be dynamically loaded here -->
-            </div>
+            <h2>Ready to Upgrade Your Wardrobe?</h2>
+            <p>Join thousands of satisfied customers who trust Ekaiva Garments for quality and style.</p>
+            <button class="cta-button primary" onclick="window.location.href='products.html'">
+                <span>Start Shopping Today</span>
+                <i class="fas fa-rocket"></i>
+                <div class="button-glow"></div>
+            </button>
         </div>
-    </div>
-
-    <!-- Contact Page -->
-    <div id="contact-page" class="page">
-        <div class="container">
-            <div class="page-header">
-                <h1>Contact Us</h1>
-                <p>Get in touch with us for any inquiries</p>
-            </div>
-
-            <div class="contact-content">
-                <div class="contact-info-section">
-                    <div class="contact-card">
-                        <div class="contact-glow"></div>
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>WhatsApp</h3>
-                        <p>Chat with us instantly</p>
-                        <a href="https://wa.me/919876543210" class="contact-btn whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Chat Now
-                        </a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-glow"></div>
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>Phone</h3>
-                        <p>Call us directly</p>
-                        <a href="tel:+919876543210" class="contact-btn phone-btn">
-                            <i class="fas fa-phone"></i> +91 98765 43210
-                        </a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-glow"></div>
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>Email</h3>
-                        <p>Send us an email</p>
-                        <a href="mailto:info@ekaivagarments.com" class="contact-btn email-btn">
-                            <i class="fas fa-envelope"></i> Email Us
-                        </a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-glow"></div>
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <h3>Visit Us</h3>
-                        <p>Come to our store</p>
-                        <div class="address">
-                            123 Fashion Street<br>
-                            Mumbai, Maharashtra 400001<br>
-                            India
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="business-hours">
-                    <h2>Business Hours</h2>
-                    <div class="hours-grid">
-                        <div class="hours-item">
-                            <span class="day">Monday - Saturday</span>
-                            <span class="time">9:00 AM - 8:00 PM</span>
-                        </div>
-                        <div class="hours-item">
-                            <span class="day">Sunday</span>
-                            <span class="time">10:00 AM - 6:00 PM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="cta-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
-    </div>
-
-    <!-- Admin Page -->
-    <div id="admin-page" class="page">
-        <div class="container">
-            <div class="admin-header">
-                <div>
-                    <h1>Admin Panel</h1>
-                    <p>Manage your product catalog</p>
-                </div>
-                <button class="add-product-btn futuristic-btn" onclick="toggleProductForm()">
-                    <i class="fas fa-plus"></i> Add New Product
-                    <div class="button-glow"></div>
-                </button>
-            </div>
-
-            <!-- Stats Cards -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="card-glow"></div>
-                    <div class="stat-content">
-                        <div>
-                            <p>Total Products</p>
-                            <h3 id="total-products">0</h3>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="fas fa-box"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="card-glow"></div>
-                    <div class="stat-content">
-                        <div>
-                            <p>Avg. Price</p>
-                            <h3 id="avg-price">$0</h3>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="card-glow"></div>
-                    <div class="stat-content">
-                        <div>
-                            <p>Categories</p>
-                            <h3 id="total-categories">0</h3>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="fas fa-tags"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="card-glow"></div>
-                    <div class="stat-content">
-                        <div>
-                            <p>Colors</p>
-                            <h3 id="total-colors">0</h3>
-                        </div>
-                        <div class="stat-icon">
-                            <i class="fas fa-palette"></i>
-                            <div class="icon-pulse"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add Product Form -->
-            <div class="product-form" id="product-form" style="display: none;">
-                <div class="form-glow"></div>
-                <h2>Add New Product</h2>
-                <form id="add-product-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Product Name</label>
-                            <input type="text" id="product-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Price ($)</label>
-                            <input type="number" id="product-price" step="0.01" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Image URL</label>
-                        <input type="url" id="product-image" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select id="product-category" required>
-                            <option value="casual">Casual</option>
-                            <option value="formal">Formal</option>
-                            <option value="sports">Sports</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Available Sizes</label>
-                        <div class="checkbox-group" id="sizes-group">
-                            <label><input type="checkbox" value="XS"> XS</label>
-                            <label><input type="checkbox" value="S"> S</label>
-                            <label><input type="checkbox" value="M"> M</label>
-                            <label><input type="checkbox" value="L"> L</label>
-                            <label><input type="checkbox" value="XL"> XL</label>
-                            <label><input type="checkbox" value="XXL"> XXL</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Available Colors</label>
-                        <div class="checkbox-group" id="colors-group">
-                            <label><input type="checkbox" value="White"> White</label>
-                            <label><input type="checkbox" value="Black"> Black</label>
-                            <label><input type="checkbox" value="Navy"> Navy</label>
-                            <label><input type="checkbox" value="Grey"> Grey</label>
-                            <label><input type="checkbox" value="Red"> Red</label>
-                            <label><input type="checkbox" value="Blue"> Blue</label>
-                            <label><input type="checkbox" value="Green"> Green</label>
-                            <label><input type="checkbox" value="Yellow"> Yellow</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="product-description" rows="4" required></textarea>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn futuristic-btn">
-                            <span>Add Product</span>
-                            <div class="button-glow"></div>
-                        </button>
-                        <button type="button" class="cancel-btn futuristic-btn" onclick="toggleProductForm()">
-                            <span>Cancel</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Products Table -->
-            <div class="products-table">
-                <div class="table-glow"></div>
-                <h2>Product Catalog</h2>
-                <div class="table-container">
-                    <table id="admin-products-table">
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Sizes</th>
-                                <th>Colors</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-products-tbody">
-                            <!-- Products will be dynamically loaded here -->
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="empty-products" id="empty-products" style="display: none;">
-                    <i class="fas fa-box"></i>
-                    <p>No products added yet.</p>
-                    <p>Click "Add New Product" to get started.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Page -->
-    <div id="login-page" class="page">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-card">
-                    <div class="auth-header">
-                        <h2>Login to Your Account</h2>
-                        <p>Welcome back! Please sign in to continue.</p>
-                    </div>
-                    
-                    <form id="login-form" class="auth-form">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" id="login-email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="login-password" required>
-                        </div>
-                        
-                        <button type="submit" class="auth-btn">
-                            <i class="fas fa-sign-in-alt"></i> Login
-                        </button>
-                    </form>
-                    
-                    <div class="auth-switch">
-                        <p>Don't have an account? <a href="#" onclick="showPage('signup')">Sign up here</a></p>
-                    </div>
-                    
-                    <div class="demo-accounts">
-                        <h3>Demo Accounts:</h3>
-                        <div class="demo-buttons">
-                            <button onclick="loginDemo('admin')" class="demo-btn admin-demo">
-                                <i class="fas fa-user-shield"></i> Login as Admin
-                            </button>
-                            <button onclick="loginDemo('user')" class="demo-btn user-demo">
-                                <i class="fas fa-user"></i> Login as User
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Signup Page -->
-    <div id="signup-page" class="page">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-card">
-                    <div class="auth-header">
-                        <h2>Create Your Account</h2>
-                        <p>Join Ekaiva Garments today!</p>
-                    </div>
-                    
-                    <form id="signup-form" class="auth-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" id="signup-firstname" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" id="signup-lastname" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" id="signup-email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="signup-password" required minlength="6">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" id="signup-confirm-password" required>
-                        </div>
-                        
-                        <button type="submit" class="auth-btn">
-                            <i class="fas fa-user-plus"></i> Create Account
-                        </button>
-                    </form>
-                    
-                    <div class="auth-switch">
-                        <p>Already have an account? <a href="#" onclick="showPage('login')">Login here</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product Modal -->
-    <div class="modal" id="product-modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <div class="modal-glow"></div>
-            <div class="modal-header">
-                <h2>Product Details</h2>
-                <button class="close futuristic-btn" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="product-details">
-                    <div class="product-image">
-                        <img id="modal-product-image" src="" alt="">
-                    </div>
-                    <div class="product-info">
-                        <h1 id="modal-product-name"></h1>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(4.8/5)</span>
-                        </div>
-                        <p class="price" id="modal-product-price"></p>
-                        <p class="description" id="modal-product-description"></p>
-                        
-                        <div class="size-selection">
-                            <h3>Select Size</h3>
-                            <div class="size-options" id="modal-size-options">
-                                <!-- Size options will be dynamically loaded -->
-                            </div>
-                        </div>
-                        
-                        <div class="color-selection">
-                            <h3>Select Color</h3>
-                            <div class="color-options" id="modal-color-options">
-                                <!-- Color options will be dynamically loaded -->
-                            </div>
-                        </div>
-                        
-                        <button class="add-to-cart-btn" id="modal-add-to-cart">
-                            <i class="fab fa-whatsapp"></i>
-                            Inquire on WhatsApp
-                            <div class="button-glow"></div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -706,7 +263,7 @@
                         <span>Ekaiva Garments</span>
                     </div>
                     <p class="footer-description">
-                        Premium quality t-shirts crafted with care and attention to detail. 
+                        Premium quality garments crafted with care and attention to detail.
                         Your satisfaction is our priority.
                     </p>
                     <div class="social-links">
@@ -724,31 +281,26 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#" onclick="showPage('home')">Home</a></li>
-                        <li><a href="#" onclick="showPage('products')">Products</a></li>
-                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Categories</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Casual T-Shirts</a></li>
-                        <li><a href="#">Formal Shirts</a></li>
+                        <li><a href="#">Casual Wear</a></li>
+                        <li><a href="#">Formal Wear</a></li>
                         <li><a href="#">Sports Wear</a></li>
-                        <li><a href="#">Graphic Tees</a></li>
                         <li><a href="#">Premium Collection</a></li>
-                        <li><a href="#">New Arrivals</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <div class="contact-info">
@@ -757,37 +309,26 @@
                             <div>
                                 <p>123 Fashion Street</p>
                                 <p>Mumbai, Maharashtra 400001</p>
-                                <p>India</p>
                             </div>
                         </div>
-                        
+
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <p>+91 98765 43210</p>
-                                <p>+91 87654 32109</p>
                             </div>
                         </div>
-                        
+
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <p>info@ekaivagarments.com</p>
-                                <p>support@ekaivagarments.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
-                                <p>Sunday: 10:00 AM - 6:00 PM</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <p>&copy; 2024 Ekaiva Garments. All rights reserved.</p>
@@ -803,649 +344,35 @@
         </div>
     </footer>
 
-    <script>
-        // Global variables
-        let currentUser = null;
-        let products = [
-            {
-                id: '1',
-                name: 'Classic Cotton T-Shirt',
-                price: 25.99,
-                image: 'https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=400',
-                category: 'casual',
-                sizes: ['S', 'M', 'L', 'XL'],
-                colors: ['White', 'Black', 'Navy'],
-                description: 'Premium quality cotton t-shirt with comfortable fit'
-            },
-            {
-                id: '2',
-                name: 'Premium Polo Shirt',
-                price: 35.99,
-                image: 'https://images.pexels.com/photos/5710082/pexels-photo-5710082.jpeg?auto=compress&cs=tinysrgb&w=400',
-                category: 'formal',
-                sizes: ['S', 'M', 'L', 'XL'],
-                colors: ['White', 'Blue', 'Grey'],
-                description: 'Elegant polo shirt perfect for business casual'
-            },
-            {
-                id: '3',
-                name: 'Graphic Print Tee',
-                price: 22.99,
-                image: 'https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg?auto=compress&cs=tinysrgb&w=400',
-                category: 'casual',
-                sizes: ['S', 'M', 'L', 'XL'],
-                colors: ['Black', 'White'],
-                description: 'Trendy graphic print t-shirt for casual wear'
-            }
-        ];
-
-        let currentProduct = null;
-        let selectedSize = '';
-        let selectedColor = '';
-        
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loading-screen').style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Intersection Observer for animations
-        const observeElements = () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.feature-card, .collection-card, .contact-card, .stat-card').forEach(el => {
-                observer.observe(el);
-            });
-        };
-
-        // DOM elements
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        const searchInput = document.getElementById('search-input');
-        const categoryFilter = document.getElementById('category-filter');
-        const productsGrid = document.getElementById('products-grid');
-        const productModal = document.getElementById('product-modal');
-
-        // Authentication elements
-        const loginLink = document.getElementById('login-link');
-        const adminLink = document.getElementById('admin-link');
-        const userProfile = document.getElementById('user-profile');
-        const logoutLink = document.getElementById('logout-link');
-        const userName = document.getElementById('user-name');
-
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            renderProducts();
-            updateAdminStats();
-            renderAdminProducts();
-            checkAuthState();
-            observeElements();
-        });
-
-        // Event listeners
-        function setupEventListeners() {
-            // Mobile menu toggle
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-
-            // Search and filter
-            searchInput.addEventListener('input', filterProducts);
-            categoryFilter.addEventListener('change', filterProducts);
-
-            // Admin form
-            const addProductForm = document.getElementById('add-product-form');
-            if (addProductForm) {
-                addProductForm.addEventListener('submit', handleAddProduct);
-            }
-
-            // Close modal when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === productModal) {
-                    closeModal();
-                }
-            });
-
-            // Auth forms
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-            
-            if (loginForm) {
-                loginForm.addEventListener('submit', handleLogin);
-            }
-            
-            if (signupForm) {
-                signupForm.addEventListener('submit', handleSignup);
-            }
-        }
-
-        // Authentication functions
-        function checkAuthState() {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateAuthUI();
-            }
-        }
-
-        function updateAuthUI() {
-            if (currentUser) {
-                // User is logged in
-                loginLink.style.display = 'none';
-                userProfile.style.display = 'block';
-                logoutLink.style.display = 'block';
-                userName.textContent = currentUser.name;
-                
-                // Show admin link only for admin users
-                if (currentUser.role === 'admin') {
-                    adminLink.style.display = 'block';
-                } else {
-                    adminLink.style.display = 'none';
-                }
-            } else {
-                // User is not logged in
-                loginLink.style.display = 'block';
-                userProfile.style.display = 'none';
-                logoutLink.style.display = 'none';
-                adminLink.style.display = 'none';
-            }
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            // Simple validation (in real app, this would be server-side)
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (user) {
-                currentUser = user;
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                updateAuthUI();
-                showPage('home');
-                showNotification('Login successful!');
-                
-                // Reset form
-                e.target.reset();
-            } else {
-                alert('Invalid email or password. Try the demo accounts!');
-            }
-        }
-
-        function handleSignup(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('signup-firstname').value;
-            const lastName = document.getElementById('signup-lastname').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm-password').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Check if email already exists
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            if (users.find(u => u.email === email)) {
-                alert('Email already exists!');
-                return;
-            }
-            
-            // Create new user
-            const newUser = {
-                id: Date.now().toString(),
-                name: `${firstName} ${lastName}`,
-                email: email,
-                password: password, // In real app, this would be hashed
-                role: 'user' // Default role is user
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            // Auto login
-            currentUser = newUser;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            updateAuthUI();
-            showPage('home');
-            showNotification('Account created successfully!');
-            
-            // Reset form
-            e.target.reset();
-        }
-
-        function loginDemo(role) {
-            const demoUser = {
-                id: role === 'admin' ? 'admin001' : 'user001',
-                name: role === 'admin' ? 'Admin User' : 'Demo User',
-                email: role === 'admin' ? 'admin@ekaiva.com' : 'user@ekaiva.com',
-                role: role
-            };
-            
-            currentUser = demoUser;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            updateAuthUI();
-            showPage('home');
-            showNotification(`Logged in as ${role}!`);
-        }
-
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            updateAuthUI();
-            showPage('home');
-            showNotification('Logged out successfully!');
-        }
-
-        // Navigation functions
-        function showPage(pageId) {
-            // Check if user is trying to access admin page
-            if (pageId === 'admin') {
-                if (!currentUser || currentUser.role !== 'admin') {
-                    showNotification('Access denied! Admin privileges required.');
-                    return;
-                }
-            }
-            
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-
-            // Show selected page
-            const targetPage = document.getElementById(pageId + '-page');
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-
-            // Update navigation active state
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Close mobile menu
-            navMenu.classList.remove('active');
-
-            // Render page-specific content
-            if (pageId === 'products') {
-                renderProducts();
-            } else if (pageId === 'admin') {
-                updateAdminStats();
-                renderAdminProducts();
-            }
-        }
-
-        // Product functions
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
-            if (!grid) return;
-
-            const filteredProducts = getFilteredProducts();
-
-            if (filteredProducts.length === 0) {
-                grid.innerHTML = `
-                    <div class="no-products" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
-                        <i class="fas fa-search" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 20px;"></i>
-                        <h3 style="color: #64748b; margin-bottom: 10px;">No products found</h3>
-                        <p style="color: #94a3b8;">Try adjusting your search or filter criteria</p>
+    <!-- Admin Login Modal -->
+    <div class="modal" id="admin-login-modal">
+        <div class="modal-backdrop" onclick="hideAdminLogin()"></div>
+        <div class="modal-content admin-login-content">
+            <div class="modal-header">
+                <h2>Admin Login</h2>
+                <button class="close-btn" onclick="hideAdminLogin()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Username</label>
+                        <input type="text" id="admin-username" placeholder="Enter username" required>
                     </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filteredProducts.map(product => `
-                <div class="product-card" onclick="openProductModal('${product.id}')">
-                    <div class="product-glow"></div>
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}">
-                        <div class="image-overlay">
-                            <div class="quick-view">
-                                <i class="fas fa-eye"></i>
-                                <span>Quick View</span>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="admin-password" placeholder="Enter password" required>
                     </div>
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="product-meta">
-                            <div class="product-price">$${product.price}</div>
-                            <div class="product-category">${product.category}</div>
-                        </div>
-                        <div class="product-details">
-                            <p>${product.sizes.length} sizes available</p>
-                            <p>${product.colors.length} colors available</p>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal('${product.id}')">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>Inquire on WhatsApp</span>
-                            <div class="button-glow"></div>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Re-observe new elements
-            setTimeout(observeElements, 100);
-        }
+                    <button type="submit" class="cta-button primary full-width">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        function getFilteredProducts() {
-            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-            const category = categoryFilter ? categoryFilter.value : 'all';
-
-            return products.filter(product => {
-                const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
-                                    product.description.toLowerCase().includes(searchTerm);
-                const matchesCategory = category === 'all' || product.category === category;
-                return matchesSearch && matchesCategory;
-            });
-        }
-
-        function filterProducts() {
-            renderProducts();
-        }
-
-        // Modal functions
-        function openProductModal(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            currentProduct = product;
-            selectedSize = product.sizes[0];
-            selectedColor = product.colors[0];
-
-            // Populate modal content
-            document.getElementById('modal-product-image').src = product.image;
-            document.getElementById('modal-product-name').textContent = product.name;
-            document.getElementById('modal-product-price').textContent = `$${product.price}`;
-            document.getElementById('modal-product-description').textContent = product.description;
-
-            // Render size options
-            const sizeOptions = document.getElementById('modal-size-options');
-            sizeOptions.innerHTML = product.sizes.map(size => `
-                <div class="size-option ${size === selectedSize ? 'selected' : ''}" 
-                     onclick="selectSize('${size}')">
-                    ${size}
-                </div>
-            `).join('');
-
-            // Render color options
-            const colorOptions = document.getElementById('modal-color-options');
-            colorOptions.innerHTML = product.colors.map(color => `
-                <div class="color-option ${color === selectedColor ? 'selected' : ''}" 
-                     onclick="selectColor('${color}')">
-                    ${color}
-                </div>
-            `).join('');
-
-            // Setup add to cart button
-            const addToCartBtn = document.getElementById('modal-add-to-cart');
-            addToCartBtn.onclick = () => inquireOnWhatsApp(product.id);
-
-            // Show modal
-            productModal.style.display = 'block';
-        }
-
-        function closeModal() {
-            productModal.style.display = 'none';
-            currentProduct = null;
-            selectedSize = '';
-            selectedColor = '';
-        }
-
-        function selectSize(size) {
-            selectedSize = size;
-            
-            // Update UI
-            const sizeOptions = document.querySelectorAll('.size-option');
-            sizeOptions.forEach(option => {
-                option.classList.toggle('selected', option.textContent.trim() === size);
-            });
-        }
-
-        function selectColor(color) {
-            selectedColor = color;
-            
-            // Update UI
-            const colorOptions = document.querySelectorAll('.color-option');
-            colorOptions.forEach(option => {
-                option.classList.toggle('selected', option.textContent.trim() === color);
-            });
-        }
-
-        // WhatsApp inquiry function
-        function inquireOnWhatsApp(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product || !selectedSize || !selectedColor) return;
-
-            // Create WhatsApp message
-            const message = `Hi! I'm interested in buying this product:
-
-Product: ${product.name}
-Price: $${product.price}
-Size: ${selectedSize}
-Color: ${selectedColor}
-
-Please provide more details about availability and ordering process.`;
-
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // WhatsApp number
-            const whatsappNumber = '919447951594';
-            
-            // Create WhatsApp URL
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
-            
-            closeModal();
-            
-            // Show success message
-            showNotification('Opening WhatsApp to inquire about this product!');
-        }
-
-        // Admin functions
-        function toggleProductForm() {
-            const form = document.getElementById('product-form');
-            if (form) {
-                form.style.display = form.style.display === 'none' ? 'block' : 'none';
-            }
-        }
-
-        function handleAddProduct(e) {
-            e.preventDefault();
-
-            const sizes = Array.from(document.querySelectorAll('#sizes-group input:checked')).map(cb => cb.value);
-            const colors = Array.from(document.querySelectorAll('#colors-group input:checked')).map(cb => cb.value);
-
-            if (sizes.length === 0 || colors.length === 0) {
-                alert('Please select at least one size and one color.');
-                return;
-            }
-
-            const newProduct = {
-                id: Date.now().toString(),
-                name: document.getElementById('product-name').value,
-                price: parseFloat(document.getElementById('product-price').value),
-                image: document.getElementById('product-image').value,
-                category: document.getElementById('product-category').value,
-                sizes: sizes,
-                colors: colors,
-                description: document.getElementById('product-description').value
-            };
-
-            products.push(newProduct);
-            
-            // Reset form
-            e.target.reset();
-            document.querySelectorAll('#sizes-group input, #colors-group input').forEach(cb => cb.checked = false);
-            
-            // Hide form
-            toggleProductForm();
-            
-            // Update displays
-            updateAdminStats();
-            renderAdminProducts();
-            renderProducts();
-            
-            showNotification('Product added successfully!');
-        }
-
-        function deleteProduct(productId) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                products = products.filter(p => p.id !== productId);
-                updateAdminStats();
-                renderAdminProducts();
-                renderProducts();
-                showNotification('Product deleted successfully!');
-            }
-        }
-
-        function updateAdminStats() {
-            const totalProducts = products.length;
-            const avgPrice = totalProducts > 0 ? 
-                (products.reduce((sum, p) => sum + p.price, 0) / totalProducts).toFixed(0) : 0;
-            const totalCategories = new Set(products.map(p => p.category)).size;
-            const totalColors = new Set(products.flatMap(p => p.colors)).size;
-
-            if (document.getElementById('total-products')) {
-                document.getElementById('total-products').textContent = totalProducts;
-            }
-            if (document.getElementById('avg-price')) {
-                document.getElementById('avg-price').textContent = `$${avgPrice}`;
-            }
-            if (document.getElementById('total-categories')) {
-                document.getElementById('total-categories').textContent = totalCategories;
-            }
-            if (document.getElementById('total-colors')) {
-                document.getElementById('total-colors').textContent = totalColors;
-            }
-        }
-
-        function renderAdminProducts() {
-            const tbody = document.getElementById('admin-products-tbody');
-            const emptyProducts = document.getElementById('empty-products');
-
-            if (!tbody) return;
-
-            if (products.length === 0) {
-                tbody.innerHTML = '';
-                if (emptyProducts) emptyProducts.style.display = 'block';
-                return;
-            }
-
-            if (emptyProducts) emptyProducts.style.display = 'none';
-
-            tbody.innerHTML = products.map(product => `
-                <tr>
-                    <td>
-                        <div class="product-cell">
-                            <img src="${product.image}" alt="${product.name}">
-                            <div>
-                                <div class="product-name">${product.name}</div>
-                                <div class="product-desc">${product.description}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="category-badge">${product.category}</span>
-                    </td>
-                    <td class="price-cell">$${product.price}</td>
-                    <td>
-                        <div class="tags">
-                            ${product.sizes.map(size => `<span class="tag">${size}</span>`).join('')}
-                        </div>
-                    </td>
-                    <td>
-                        <div class="tags">
-                            ${product.colors.slice(0, 3).map(color => `<span class="tag">${color}</span>`).join('')}
-                            ${product.colors.length > 3 ? `<span class="tag">+${product.colors.length - 3}</span>` : ''}
-                        </div>
-                    </td>
-                    <td>
-                        <button class="delete-btn" onclick="deleteProduct('${product.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        // Utility functions
-        function showNotification(message) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = 'notification futuristic-notification';
-            notification.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                color: white;
-                padding: 15px 20px;
-                border-radius: 15px;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-                backdrop-filter: blur(10px);
-                z-index: 3000;
-                animation: slideInRight 0.3s ease;
-                max-width: 300px;
-            `;
-            notification.textContent = message;
-
-            // Add to DOM
-            document.body.appendChild(notification);
-
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-
-        // Add CSS for notification animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
